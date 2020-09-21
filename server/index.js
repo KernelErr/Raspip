@@ -25,6 +25,12 @@ function buildList(value) {
 }
 
 app.post('/', textParser, function (req, res) {
+    if (messagesCount == 10) {
+        for(var i=1;i<=9;i++){
+            messages[i-1]=messages[i];
+        }
+        messagesCount=9;
+    }
     messages[messagesCount] = req.ip + ' - ' + req.body
     console.log(messages[messagesCount])
     messagesCount++
